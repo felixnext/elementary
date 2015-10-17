@@ -1,0 +1,148 @@
+@(item: StatisticData)
+
+<p><strong>@item.id</strong></p>
+<table class="table">
+  @item.question match {
+    case Some(q) => {
+      <tr>
+        <td>Question:</td>
+        <td>@q</td>
+      </tr>
+    }
+    case _ => {}
+  }
+  @item.answer match {
+    case Some(q) => {
+      <tr>
+        <td>Answer:</td>
+        <td>@q</td>
+      </tr>
+    }
+    case _ => {}
+  }
+  @item.ranking match {
+    case Some(q) => {
+      <tr>
+        <td></td>
+        <td>Ranking:</td>
+        <td>@q</td>
+      </tr>
+    }
+    case _ => {}
+  }
+  @item.finished match {
+    case Some(q) => {
+      <tr>
+        <td>Completed:</td>
+        <td>@q</td>
+      </tr>
+    }
+    case _ => {}
+  }
+  @item.sender match {
+    case Some(q) => {
+      <tr>
+        <td>Sender:</td>
+        <td>@q</td>
+      </tr>
+    }
+    case _ => {}
+  }
+  @item.node match {
+    case Some(q) => {
+      <tr>
+        <td>Node:</td>
+        <td>@q</td>
+      </tr>
+    }
+    case _ => {}
+  }
+  <tr>
+    <td>Details:</td>
+  </tr>
+  @item.details.corpus match {
+    case Some(q) => {
+      <tr>
+        <td></td>
+        <td>Corpus:</td>
+        <td>@q</td>
+      </tr>
+    }
+    case _ => {}
+  }
+  @item.details.id match {
+    case Some(q) => {
+      <tr>
+        <td></td>
+        <td>ID:</td>
+        <td>@q</td>
+      </tr>
+    }
+    case _ => {}
+  }
+  @item.details.time match {
+    case Some(q) => {
+      <tr>
+        <td></td>
+        <td>Time:</td>
+        <td>@q</td>
+      </tr>
+    }
+    case _ => {}
+  }
+  @item.details.details match {
+    case Some(q) => {
+      <tr>
+        <td></td>
+        <td>Details:</td>
+        <td>@q</td>
+      </tr>
+    }
+    case _ => {}
+  }
+  @item.times match {
+    case Some(times) => {
+      <tr>
+        <td>Times:</td>
+      </tr>
+      @for(time <- times.toList.sortBy(_._2)) {
+        <tr>
+          <td></td>
+          <td>@time._1</td>
+          <td>@time._2 (@{(time._2 - item.id).toDouble / 1000.0} secs)</td>
+        </tr>
+      }
+    }
+    case _ => {}
+  }
+  @item.steps match {
+    case Some(steps) => {
+      <tr>
+        <td>Steps:</td>
+      </tr>
+      @for(step <- steps) {
+        <tr>
+          <td></td>
+          <td>@step._1</td>
+          <td>@step._2</td>
+        </tr>
+      }
+    }
+    case _ => {}
+  }
+  @item.candidates match {
+    case Some(cands) => {
+      <tr>
+        <td>Candidates:</td>
+      </tr>
+      @for(can <- cands) {
+        <tr>
+          <td></td>
+          <td>@can._1</td>
+          <td>@can._2</td>
+        </tr>
+      }
+    }
+    case _ => {}
+  }
+</table>

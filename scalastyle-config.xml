@@ -1,0 +1,36 @@
+<scalastyle>
+ <name>Elementary Style Definition</name>
+ <check level="error" class="org.scalastyle.file.FileLengthChecker" enabled="true">
+  <parameters>
+   <parameter name="maxFileLength"><![CDATA[200]]></parameter>
+  </parameters>
+ </check>
+ <check level="error" class="org.scalastyle.file.FileLineLengthChecker" enabled="true">
+  <parameters>
+   <parameter name="maxLineLength"><![CDATA[150]]></parameter>
+   <parameter name="tabSize"><![CDATA[2]]></parameter>
+  </parameters>
+ </check>
+ <check level="error" class="org.scalastyle.file.FileTabChecker" enabled="true"></check>
+ <check level="error" class="org.scalastyle.file.NewLineAtEofChecker" enabled="true"></check>
+ <check enabled="true" class="org.scalastyle.file.WhitespaceEndOfLineChecker" level="error"/>
+ <check level="error" class="org.scalastyle.scalariform.ClassNamesChecker" enabled="true">
+  <parameters>
+   <parameter name="regex"><![CDATA[[A-Z][A-Za-z]*]]></parameter>
+  </parameters>
+ </check>
+ <check level="error" class="org.scalastyle.scalariform.ObjectNamesChecker" enabled="true">
+  <parameters>
+   <parameter name="regex"><![CDATA[[A-Z][A-Za-z]*]]></parameter>
+  </parameters>
+ </check>
+ <check enabled="true" class="org.scalastyle.scalariform.EmptyClassChecker" level="warning"/>
+  <check enabled="true" class="org.scalastyle.scalariform.NotImplementedErrorUsage" level="warning"/>
+  <check enabled="true" class="org.scalastyle.scalariform.ProcedureDeclarationChecker" level="warning"/>
+  <check enabled="true" class="org.scalastyle.scalariform.ReturnChecker" level="error"/>
+  <check enabled="true" class="org.scalastyle.scalariform.SimplifyBooleanExpressionChecker" level="warning"/>
+  <check enabled="true" class="org.scalastyle.scalariform.VarFieldChecker" level="warning"/>
+  <check enabled="true" class="org.scalastyle.scalariform.VarLocalChecker" level="error"/>
+  <check enabled="true" class="org.scalastyle.scalariform.WhileChecker" level="error"/>
+  <check enabled="true" class="org.scalastyle.scalariform.NullChecker" level="warning"/>
+</scalastyle>

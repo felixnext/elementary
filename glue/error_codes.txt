@@ -1,0 +1,2 @@
+1xx LOG ERRORS:
+101 Unable to retrieve log messages

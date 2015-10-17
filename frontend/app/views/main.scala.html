@@ -1,0 +1,37 @@
+@(title: String, tab: String = "")(content: Html)(implicit flash: Flash)
+
+<!DOCTYPE html>
+
+<html>
+    <head>
+      <title>@title</title>
+        <link rel="stylesheet" media="screen" href="@routes.Assets.at("lib/bootstrap/css/bootstrap.min.css")">
+        <link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/main.css")">
+        <link rel="shortcut icon" type="image/png" href="@routes.Assets.at("images/favicon.png")">
+        <script src="@routes.Assets.at("lib/jquery/jquery.min.js")" type="text/javascript"></script>
+		<script src="@routes.Assets.at("lib/bootstrap/js/bootstrap.min.js")" type="text/javascript"></script>
+        <script src="@routes.Assets.at("javascripts/hello.js")" type="text/javascript"></script>
+    </head>
+    <body>
+      <div class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+          <div class="navbar-collapse collapse" id="navbar-main">
+            <ul class="nav navbar-nav">
+              <li class=""><a href="@routes.Application.index">Home</a></li>
+              <li class=""><a href="@routes.Application.stats(10)">Statistics</a></li>
+              <li class=""><a href="@routes.Application.questions">Questions</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="container">
+        @if(flash.get("success")) {
+          <p class="bg-success">@flash.get("success")</p>
+        }
+        @if(flash.get("error")) {
+          <p class="bg-danger">@flash.get("error")</p>
+        }
+        @content
+      </div>
+    </body>
+</html>

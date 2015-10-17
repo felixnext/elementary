@@ -1,0 +1,40 @@
+@(askForm: Form[AskSubmission], question: Option[String], answer: Option[String], stats: Option[StatisticData])(implicit flash: Flash)
+
+@import b3.vertical.fieldConstructor
+
+@main("Elementary") {
+  <h3>New Question:</h3>
+  <p><strong>Please ask a question.</strong></p>
+
+    @b3.form(routes.Application.handleAsk) {
+    @b3.text(askForm("question"), '_label -> "Question")
+    @b3.submit('class -> "btn btn-default"){ Submit }
+  }
+
+@(question, answer) match {
+  case (Some(q),Some(a)) => {
+    <h3>Answer:</h3>
+
+    <table class="table">
+      <tr>
+        <td>Your Question:</td>
+        <td>@q</td>
+      </tr>
+      <tr>
+        <td>Answer:</td>
+        <td>@a</td>
+      </tr>
+    </table>
+  }
+  case _ => {}
+}
+
+@stats match {
+  case Some(data) => {
+    <h3>Statistics:</h3>
+
+    @statsitem(data)
+  }
+  case _ => {}
+}
+}

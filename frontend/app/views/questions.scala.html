@@ -1,0 +1,41 @@
+@(questionForm: Form[QuestionData], doc: BaseData, text: String, seed: Long, offset: Int)(implicit flash: Flash)
+
+@import b3.vertical.fieldConstructor
+
+@main("Elementary - Add a question") {
+  <h3>Lecture Corpus Snippet</h3>
+
+  <table class="table">
+    <tr>
+      <td>Speech Event:</td>
+      <td>@doc.speechevent</td>
+    </tr>
+    <tr>
+      <td>Module:</td>
+      <td>@doc.module</td>
+    </tr>
+    <tr>
+      <td>Name:</td>
+      <td>@doc.name</td>
+    </tr>
+    <tr>
+      <td>Part Level:</td>
+      <td>@doc.partlevel</td>
+    </tr>
+    <tr>
+      <td>Text Snippet:</td>
+      <td>@text</td>
+    </tr>
+  </table>
+
+  <h3>Question</h3>
+  <p><strong>Please ask a question beeing answered by the text snippet above. If no meaningful question can be derived from the text, <a href="@routes.Application.index">reload</a> to get a new text snippet.</strong></p>
+
+    @b3.form(routes.Application.handleQuestion(seed, offset)) {
+    @b3.text(questionForm("question"), '_label -> "Question")
+    @b3.text(questionForm("qtype"), '_label -> "Question Type")
+    @b3.text(questionForm("answer"), '_label -> "Answer")
+    @b3.text(questionForm("atype"), '_label -> "Answer Type")
+    @b3.submit('class -> "btn btn-default"){ Submit }
+  }
+}

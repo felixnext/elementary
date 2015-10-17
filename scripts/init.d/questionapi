@@ -1,0 +1,57 @@
+#!/bin/sh
+### BEGIN INIT INFO
+# Provides:          questionapi
+# Required-Start:
+# Required-Stop:
+# Default-Start:     2 3 4 5
+# Default-Stop:      0 1 6
+# Short-Description:
+# Description:
+### END INIT INFO
+# Author: Philipp Dittrich <mail@philippditttri.ch>
+
+SERVICE_NAME=ElementaryQuestionAPI
+PATH_TO_JAR=/home/elementary/elementary/
+CLASSPATH=$PATH_TO_JAR/question-api.jar:$PATH_TO_JAR/question-api-deps.jar
+LOGPATH=/home/elementary/log
+LOG_FILE=$LOGPATH/questionapi_$(date +"%Y-%m-%d-%H%M").log
+MAIN=elementary.api.ApiServer
+PID_PATH_NAME=/tmp/$SERVICE_NAME-pid
+case $1 in
+    start)
+        echo "Starting $SERVICE_NAME ..."
+        if [ ! -f $PID_PATH_NAME ]; then
+            nohup java -cp "$CLASSPATH" $MAIN >$LOG_FILE 2>&1 &
+                        echo $! > $PID_PATH_NAME
+            echo "$SERVICE_NAME started ..."
+        else
+            echo "$SERVICE_NAME is already running ..."
+        fi
+    ;;
+    stop)
+        if [ -f $PID_PATH_NAME ]; then
+            PID=$(cat $PID_PATH_NAME);
+            echo "$SERVICE_NAME stoping ..."
+            kill $PID;
+            echo "$SERVICE_NAME stopped ..."
+            rm $PID_PATH_NAME
+        else
+            echo "$SERVICE_NAME is not running ..."
+        fi
+    ;;
+    restart)
+        if [ -f $PID_PATH_NAME ]; then
+            PID=$(cat $PID_PATH_NAME);
+            echo "$SERVICE_NAME stopping ...";
+            kill $PID;
+            echo "$SERVICE_NAME stopped ...";
+            rm $PID_PATH_NAME
+            echo "$SERVICE_NAME starting ..."
+            nohup java -cp "$CLASSPATH" $MAIN >$LOG_FILE 2>&1 &
+                        echo $! > $PID_PATH_NAME
+            echo "$SERVICE_NAME started ..."
+        else
+            echo "$SERVICE_NAME is not running ..."
+        fi
+    ;;
+esac 

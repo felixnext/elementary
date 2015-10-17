@@ -1,0 +1,9 @@
+@(data: List[StatisticData])(implicit flash: Flash)
+
+@main("Elementary - Statistics") {
+  <h3>Statistics:</h3>
+
+  @for(item <- data) {
+    @statsitem(item)
+  }
+}
