@@ -14,6 +14,8 @@ In general `sbt` should do most of the heavily lifting.
 
 The architecture is based around scalable micro-services, which work through reactive-streams.
 
+The actual retrieval process is based around document retrieval through Doc2Vec (trained on wikipedia data) and text understanding through entity recognition and Paragraph Embeddings.
+
 ## License
 
 Published under MIT License.
